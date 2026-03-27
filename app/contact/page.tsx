@@ -2,7 +2,7 @@
 
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
-import { Mail, Users, Code, Terminal, ChevronRight, Trophy, Clock, Shield, Target, Zap, Globe, Cpu } from 'lucide-react';
+import { Mail, Users, Image, Code, Terminal, ChevronRight, Trophy, Clock, Shield, Target, Zap, Globe, Cpu, CircleFadingPlus } from 'lucide-react';
 
 export default function ContactPage() {
   return (
@@ -21,7 +21,7 @@ export default function ContactPage() {
           </h1>
 
           <p className="text-xs md:text-lg text-neutral-400 font-light tracking-wide max-w-xl mx-auto leading-relaxed px-4 md:px-0 opacity-80">
-            Reach out for collaboration, inquiries, or join our elite cybersecurity operations.
+            Let’s connect for collaboration, questions, or to grow with our community.
           </p>
         </div>
       </section>
@@ -44,16 +44,17 @@ export default function ContactPage() {
                 bgIcon: <Users size={120} />,
                 title: "Discord", 
                 desc: "Community & Support", 
-                link: "discord.gg/arcanists", 
-                href: "https://discord.gg/arcanists" 
+                //link: "discord.gg/arcanists", 
+                link: "Coming Soon", 
+                href: "#" 
               },
               { 
-                icon: <Code size={24} />, 
-                bgIcon: <Cpu size={120} />,
-                title: "GitHub", 
-                desc: "Source Repositories", 
-                link: "github.com/arcanists", 
-                href: "https://github.com" 
+                icon: <CircleFadingPlus size={24} />, 
+                bgIcon: <Image size={120} />,
+                title: "Instagram", 
+                desc: "Documentation & Media", 
+                link: "instagram.com/arcanist.team", 
+                href: "https://www.instagram.com/arcanist.team" 
               }
             ].map((item, i) => (
               <div key={i} className="relative overflow-hidden bg-neutral-900/30 rounded-xl md:rounded-2xl border border-neutral-800 p-6 md:p-8 hover:border-orange-500/50 hover:bg-orange-500/5 transition-all duration-500 group">
