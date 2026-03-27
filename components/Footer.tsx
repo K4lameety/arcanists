@@ -70,8 +70,8 @@ export function Footer() {
               <h4 className="terminal-text text-[10px] uppercase tracking-[0.3em] text-orange-500 font-bold">Connect</h4>
               <div className="flex gap-4">
                 {[
-                  { icon: <Mail size={18} />, label: 'Email', href: 'mailto:contact@arcanist.team' }
-                  { icon: <CircleFadingPlus size={18} />, label: 'Instagram', href: 'https://www.instagram.com/arcanist.team' },
+                  { icon: <Mail size={18} />, label: 'Email', href: 'mailto:contact@arcanist.team' },
+                  { icon: <CircleFadingPlus size={18} />, label: 'Instagram', href: 'https://www.instagram.com/arcanist.team' }
                 ].map((social, i) => (
                   <a
                     key={i}
