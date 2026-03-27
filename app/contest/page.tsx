@@ -66,7 +66,7 @@ export default function ContestsPage() {
       {/* Contest List Section */}
       <section className="relative w-full pt-4 pb-16 md:py-24 px-6 md:px-12 bg-black border-t border-neutral-900">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="mb-12 md:mb-16 space-y-3 md:space-y-4 text-left">
+          <div className="mb-12 md:mb-20 space-y-3 md:space-y-4 text-left">
             <h2 className="text-3xl md:text-6xl font-black text-white uppercase tracking-tighter">
               Contests
             </h2>

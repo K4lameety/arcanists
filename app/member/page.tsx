@@ -112,7 +112,8 @@ export default function TeamPage() {
 
       <section className="relative w-full py-16 px-6 md:px-12 bg-black border-t border-neutral-900">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="mb-12 md:mb-16 space-y-3 md:space-y-4 text-left">
+          
+          <div className="mb-12 md:mb-20 space-y-3 md:space-y-4 text-left">
             <h2 className="text-3xl md:text-6xl font-black uppercase tracking-tighter">Members</h2>
             <div className="h-[3px] w-20 bg-orange-500 shadow-[0_0_15px_rgba(249,115,22,0.6)]"></div>
           </div>
