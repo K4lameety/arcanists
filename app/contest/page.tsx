@@ -37,7 +37,7 @@ export default function ContestsPage() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative min-h-[250px] md:min-h-[600px] w-full flex flex-col items-center justify-center overflow-hidden px-6 py-10 md:py-32 mt-8 md:mt-16 text-center">
+      <section className="relative min-h-[250px] md:min-h-[500px] w-full flex flex-col items-center justify-center overflow-hidden px-6 py-10 md:py-32 mt-8 md:mt-16 text-center">
         {/* Background Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:30px_30px] md:bg-[size:60px_60px] pointer-events-none" />
         
@@ -58,7 +58,7 @@ export default function ContestsPage() {
           </h1>
 
              <p className="text-xs md:text-xl text-orange-400 font-bold tracking-[0.2em] uppercase">
-              Our track record of participation in national and international cybersecurity events
+              Our journey through national and international challenges
             </p>
         </div>
       </section>
