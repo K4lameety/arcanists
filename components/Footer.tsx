@@ -27,7 +27,7 @@ export function Footer() {
             </a>
 
             <p className="text-xs md:text-sm text-neutral-500 leading-relaxed font-light px-4 md:px-0">
-              Divisi Cybersecurity & Networking di bawah <span className="text-white">FORTICODE</span>. Berfokus pada kompetisi CTF dan pengembangan keamanan digital di lingkungan UMY.
+              Securing the digital horizon through collaboration and technical excellence.
             </p>
           </div>
 

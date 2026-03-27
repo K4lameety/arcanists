@@ -58,7 +58,7 @@ export default function ContestsPage() {
           </h1>
 
              <p className="text-xs md:text-xl text-orange-400 font-bold tracking-[0.2em] uppercase">
-              Victory in Digital Warfare
+              Our track record of participation in national and international cybersecurity events
             </p>
         </div>
       </section>
