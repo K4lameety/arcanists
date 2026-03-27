@@ -1,6 +1,6 @@
 'use client';
 
-import { memo } from 'react';
+import { memo, cloneElement, ReactElement } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { 
@@ -22,6 +22,7 @@ import {
   Binary
 } from 'lucide-react';
 
+
 const MEMBERS = [
   {
     id: 1,
@@ -31,7 +32,6 @@ const MEMBERS = [
     specializations: ['Web', 'Forensics'],
     joinedYear: '2025',
     avatarUrl: '/avatar/K4lameety.png',
-    bgIcon: <FileSearch size={120} />,
     socials: [
       { icon: <Github size={16} />, url: 'https://github.com/K4lameety' },
       { icon: <Globe size={16} />, url: 'https://k4lameety.github.io' }
@@ -45,10 +45,20 @@ const MEMBERS = [
     specializations: ['Crypto', 'Osint'],
     joinedYear: '2025',
     avatarUrl: '/avatar/Kaiser114.png',
-    bgIcon: <Eye size={120} />,
+    socials: []
+  },
+  {
+    id: 3,
+    nickname: 'leosycthe',
+    role: '',
+    status: 'active',
+    specializations: [],
+    joinedYear: '2023',
+    avatarUrl: '/avatar/Leosycthe.png',
     socials: []
   },
 ];
+
 
 const SPECS_CONFIG: Record<string, { style: string; icon: React.ReactNode }> = {
   'Web': { style: 'bg-blue-600 border-blue-400 text-white', icon: <Globe size={14} /> },
@@ -64,6 +74,12 @@ const SPECS_CONFIG: Record<string, { style: string; icon: React.ReactNode }> = {
   'AI': { style: 'bg-indigo-600 border-indigo-400 text-white', icon: <Bot size={14} /> },
   'Misc': { style: 'bg-neutral-600 border-neutral-400 text-white', icon: <Circle size={10} fill="currentColor" /> },
 };
+
+const SORTED_MEMBERS = [...MEMBERS].sort((a, b) => {
+  const yearDiff = parseInt(a.joinedYear) - parseInt(b.joinedYear);
+  if (yearDiff !== 0) return yearDiff;
+  return a.id - b.id;
+});
 
 const SpecializationBadge = memo(({ spec }: { spec: string }) => {
   const config = SPECS_CONFIG[spec] || SPECS_CONFIG['Misc'];
@@ -111,75 +127,84 @@ export default function TeamPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {MEMBERS.map((member) => (
-              <div
-                key={member.id}
-                className="group relative bg-neutral-900/30 border border-neutral-800 rounded-2xl p-6 md:p-8 transition-all duration-500 hover:border-orange-500/40 hover:bg-orange-500/[0.02] flex flex-col justify-between overflow-hidden [transform:translateZ(0)]"
-              >
-                <div className="absolute -bottom-4 -right-4 opacity-[0.03] group-hover:opacity-[0.1] group-hover:text-orange-500 transition-all duration-700 pointer-events-none will-change-transform">
-                  {member.bgIcon}
-                </div>
+            {SORTED_MEMBERS.map((member) => {
+              const lastSpec = member.specializations[member.specializations.length - 1];
+              const specConfig = SPECS_CONFIG[lastSpec];
 
-                <div className="relative z-10">
-                  <div className="flex justify-between items-start mb-8">
-                    <div className="relative">
-                      <div className="w-20 h-20 rounded-full bg-neutral-900 border-2 border-neutral-800 overflow-hidden group-hover:border-orange-500/50 transition-all duration-500">
-                        <img 
-                          src={member.avatarUrl} 
-                          alt={member.nickname}
-                          loading="lazy"
-                          className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-                        />
+              return (
+                <div
+                  key={member.id}
+                  className="group relative bg-neutral-900/30 border border-neutral-800 rounded-2xl p-6 md:p-8 transition-all duration-500 hover:border-orange-500/40 hover:bg-orange-500/[0.02] flex flex-col justify-between overflow-hidden [transform:translateZ(0)]"
+                >
+                  {specConfig && (
+                    <div className="absolute -bottom-6 -right-6 opacity-[0.03] group-hover:opacity-[0.12] group-hover:text-orange-500 transition-all duration-700 pointer-events-none will-change-transform group-hover:rotate-12 group-hover:scale-110">
+                      {cloneElement(specConfig.icon as ReactElement, { size: 140 })}
+                    </div>
+                  )}
+
+                  <div className="relative z-10">
+                    <div className="flex justify-between items-start mb-8">
+                      <div className="relative">
+                        <div className="w-20 h-20 rounded-full bg-neutral-900 border-2 border-neutral-800 overflow-hidden group-hover:border-orange-500/50 transition-all duration-500">
+                          <img 
+                            src={member.avatarUrl} 
+                            alt={member.nickname}
+                            loading="lazy"
+                            className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex gap-2">
+                        {member.socials.map((social, sIdx) => (
+                          <a key={sIdx} href={social.url} target="_blank" rel="noopener noreferrer" className="p-2.5 bg-neutral-800 border border-neutral-700 rounded-xl text-neutral-400 hover:text-orange-500 hover:border-orange-500/50 transition-all active:scale-90">
+                            {social.icon}
+                          </a>
+                        ))}
                       </div>
                     </div>
 
-                    <div className="flex gap-2">
-                      {member.socials.map((social, sIdx) => (
-                        <a key={sIdx} href={social.url} target="_blank" rel="noopener noreferrer" className="p-2.5 bg-neutral-800 border border-neutral-700 rounded-xl text-neutral-400 hover:text-orange-500 hover:border-orange-500/50 transition-all active:scale-90">
-                          {social.icon}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="space-y-6 text-left">
-                    <div>
-                      <h3 className="text-3xl font-black text-white tracking-tight group-hover:text-orange-500 transition-colors uppercase italic">
-                        {member.nickname}
-                      </h3>
-                      
-                      <div className="flex items-center gap-4 mt-2">
-                        <div className="flex items-center gap-2">
-                          <Calendar size={14} className="text-orange-500" />
-                          <p className="text-[12px] text-neutral-300 font-black uppercase tracking-widest">
-                            Est. {member.joinedYear}
-                          </p>
-                        </div>
+                    <div className="space-y-6 text-left">
+                      <div>
+                        <h3 className="text-3xl font-black text-white tracking-tight group-hover:text-orange-500 transition-colors uppercase italic">
+                          {member.nickname}
+                        </h3>
                         
-                        <div className={`flex items-center gap-1.5 px-2.5 py-0.5 rounded border text-[10px] font-black uppercase tracking-tighter ${
-                          member.status === 'active' 
-                          ? 'border-green-500/50 text-green-400 bg-green-500/10' 
-                          : 'border-neutral-600 text-neutral-500 bg-neutral-800'
-                        }`}>
-                          <div className={`w-1.5 h-1.5 rounded-full ${member.status === 'active' ? 'bg-green-500 animate-pulse' : 'bg-neutral-600'}`} />
-                          {member.status}
+                        <div className="flex items-center gap-4 mt-2">
+                          <div className="flex items-center gap-2">
+                            <Calendar size={14} className="text-orange-500" />
+                            <p className="text-[12px] text-neutral-300 font-black uppercase tracking-widest">
+                              Est. {member.joinedYear}
+                            </p>
+                          </div>
+                          
+                          <div className={`flex items-center gap-1.5 px-2.5 py-0.5 rounded border text-[10px] font-black uppercase tracking-tighter ${
+                            member.status === 'active' 
+                            ? 'border-green-500/50 text-green-400 bg-green-500/10' 
+                            : 'border-neutral-600 text-neutral-500 bg-neutral-800'
+                          }`}>
+                            <div className={`w-1.5 h-1.5 rounded-full ${member.status === 'active' ? 'bg-green-500 animate-pulse' : 'bg-neutral-600'}`} />
+                            {member.status}
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <p className="text-sm text-neutral-400 font-medium tracking-wide">
-                      {member.role}
-                    </p>
+                      {member.role && (
+                        <p className="text-sm text-neutral-400 font-medium tracking-wide">
+                          {member.role}
+                        </p>
+                      )}
 
-                    <div className="flex flex-wrap gap-2.5 pt-2">
-                      {member.specializations.map((spec) => (
-                        <SpecializationBadge key={spec} spec={spec} />
-                      ))}
+                      <div className="flex flex-wrap gap-2.5 pt-2">
+                        {member.specializations.map((spec) => (
+                          <SpecializationBadge key={spec} spec={spec} />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
