@@ -106,7 +106,7 @@ export default function TeamPage() {
           <h1 className="text-4xl md:text-8xl font-black tracking-tighter text-white uppercase leading-none">
             The <span className="text-orange-500">Operators</span>
           </h1>
-          <p className="text-xs md:text-xl text-orange-400 font-bold tracking-[0.2em] uppercase px-4">Elite Division of Digital Architects</p>
+          <p className="text-xs md:text-xl text-orange-400 font-bold tracking-[0.2em] uppercase px-4">Our technical team and security enthusiasts</p>
         </div>
       </section>
 

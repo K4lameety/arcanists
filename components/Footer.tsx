@@ -102,7 +102,7 @@ export function Footer() {
             </div>
             <div className="flex items-start gap-2 mt-2 leading-relaxed">
               <span className="text-orange-500">$</span>
-              <span className="break-all md:break-normal">echo "&copy; 2026 ARCANISTS. All rights reserved."</span>
+              <span className="break-all md:break-normal">echo "&copy; 2026 Arcanists. All rights reserved."</span>
             </div>
           </div>
           
