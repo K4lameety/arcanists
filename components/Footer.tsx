@@ -1,10 +1,22 @@
 'use client';
 
-import { Github, Twitter, Mail, ArrowRight, CircleFadingPlus } from 'lucide-react';
+import { memo } from 'react';
+import { Mail, ArrowRight, CircleFadingPlus } from 'lucide-react';
+
+const FOOTER_LINKS = [
+  { label: 'Homes', href: '/#about' },
+  { label: 'Members', href: '/member' },
+  { label: 'Contests', href: '/contest' },
+];
+
+const SOCIAL_LINKS = [
+  { icon: <Mail size={18} />, label: 'Email', href: 'mailto:contact@arcanist.team' },
+  { icon: <CircleFadingPlus size={18} />, label: 'Instagram', href: 'https://www.instagram.com/arcanist.team' }
+];
 
 export function Footer() {
   return (
-    <footer className="relative w-full bg-black border-t border-neutral-900 py-12 md:py-16 px-6 md:px-12 overflow-hidden font-mono">
+    <footer className="relative w-full bg-black border-t border-neutral-900 py-12 md:py-16 px-6 md:px-12 overflow-hidden font-mono [transform:translateZ(0)]">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:40px_40px] md:bg-[size:50px_50px] pointer-events-none" />
 
@@ -15,11 +27,12 @@ export function Footer() {
           
           {/* Brand & Tagline */}
           <div className="space-y-6 max-w-sm text-center md:text-left flex flex-col items-center md:items-start">
-            <a href="/" className="flex items-center gap-2 group">
+            <a href="/" className="flex items-center gap-2 group active:scale-95 transition-transform">
               <div className="flex items-center gap-2 font-mono text-xl font-bold tracking-tighter">
                 <img 
                   src="icon.png" 
                   alt="Arcanists Icon" 
+                  loading="lazy"
                   className="w-8 h-auto transition-transform group-hover:scale-110"
                 /> 
                 <span className="text-white neon-cyan uppercase">Arcanists</span>
@@ -38,11 +51,7 @@ export function Footer() {
             <div className="hidden md:block space-y-5">
               <h4 className="terminal-text text-[10px] uppercase tracking-[0.3em] text-orange-500 font-bold">Navigation</h4>
               <ul className="space-y-3 terminal-text text-[11px] uppercase tracking-widest">
-                {[
-                  { label: 'Homes', href: '/#about' },
-                  { label: 'Members', href: '/member' },
-                  { label: 'Contests', href: '/contest' },
-                ].map((link, idx) => (
+                {FOOTER_LINKS.map((link, idx) => (
                   <li key={idx}>
                     <a 
                       href={link.href} 
@@ -54,8 +63,6 @@ export function Footer() {
                           className="text-orange-500 min-w-[14px] -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out" 
                         />
                       </div>
-                      
-                      {/* Teks Navigasi */}
                       <span className="group-hover:translate-x-1 transition-transform duration-300 ease-in-out">
                         {link.label}
                       </span>
@@ -69,14 +76,13 @@ export function Footer() {
             <div className="space-y-5 text-center md:text-left flex flex-col items-center md:items-start">
               <h4 className="terminal-text text-[10px] uppercase tracking-[0.3em] text-orange-500 font-bold">Connect</h4>
               <div className="flex gap-4">
-                {[
-                  { icon: <Mail size={18} />, label: 'Email', href: 'mailto:contact@arcanist.team' },
-                  { icon: <CircleFadingPlus size={18} />, label: 'Instagram', href: 'https://www.instagram.com/arcanist.team' }
-                ].map((social, i) => (
+                {SOCIAL_LINKS.map((social, i) => (
                   <a
                     key={i}
                     href={social.href}
-                    className="p-3 bg-neutral-900/50 border border-neutral-800 text-neutral-400 hover:text-orange-500 hover:border-orange-500/50 hover:bg-orange-500/5 rounded-xl transition-all duration-300"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-neutral-900/50 border border-neutral-800 text-neutral-400 hover:text-orange-500 hover:border-orange-500/50 hover:bg-orange-500/5 rounded-xl transition-all duration-300 active:scale-90"
                     aria-label={social.label}
                   >
                     {social.icon}
@@ -93,7 +99,7 @@ export function Footer() {
 
         {/* Terminal Signature */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-6">
-          <div className="p-4 bg-neutral-900/30 rounded-xl border border-neutral-800/50 font-mono text-[9px] md:text-xs text-neutral-500 w-full md:w-auto overflow-hidden">
+          <div className="p-4 bg-neutral-900/30 rounded-xl border border-neutral-800/50 font-mono text-[9px] md:text-xs text-neutral-500 w-full md:w-auto overflow-hidden [transform:translateZ(0)]">
             <div className="flex items-center gap-2 whitespace-nowrap">
               <span className="text-orange-500">$</span>
               <span>arcanists --status</span>
@@ -101,7 +107,7 @@ export function Footer() {
             </div>
             <div className="flex items-start gap-2 mt-2 leading-relaxed">
               <span className="text-orange-500">$</span>
-              <span className="break-all md:break-normal">echo "&copy; 2026 Arcanists. All rights reserved."</span>
+              <span className="break-all md:break-normal text-neutral-400">echo "&copy; 2026 Arcanists. All rights reserved."</span>
             </div>
           </div>
           

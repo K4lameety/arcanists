@@ -1,10 +1,10 @@
 'use client';
 
+import { memo } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { 
   Trophy, 
-  Terminal, 
   ChevronRight, 
   Target, 
   Globe, 
@@ -16,39 +16,46 @@ import {
   Shield
 } from 'lucide-react';
 
-export default function ContestsPage() {
-  const contests = [
-    {
-      year: '2025',
-      month: 'Dec',
-      event: 'HTB: University CTF 2025 Tinsel Trouble',
-      placement: '126th Place',
-      points: '12700 pts',
-      flags: '31 Flags',
-      format: 'Jeopardy',
-      icon: Trophy,
-      color: 'text-orange-400',
-      ctftime: 'https://ctf.hackthebox.com/event/details/university-ctf-2025-tinsel-trouble-2993'
-    }
-  ];
+const CONTESTS_LIST = [
+  {
+    year: '2025',
+    month: 'Dec',
+    event: 'HTB: University CTF 2025 Tinsel Trouble',
+    placement: '126th Place',
+    points: '12700 pts',
+    flags: '31 Flags',
+    format: 'Jeopardy',
+    icon: Trophy,
+    color: 'text-orange-400',
+    ctftime: 'https://ctf.hackthebox.com/event/details/university-ctf-2025-tinsel-trouble-2993'
+  }
+];
 
+const OVERALL_STATS = [
+  { label: 'Competitions', value: '1', icon: <Globe size={120} /> },
+  { label: 'Challenges Solved', value: '18', icon: <Target size={120} /> },
+  { label: 'Flag Captures', value: '31', icon: <Zap size={120} /> },
+  { label: 'Data Points', value: '12.7K', icon: <Activity size={120} /> },
+];
+
+export default function ContestsPage() {
   return (
-    <main className="w-full bg-black text-white overflow-x-hidden font-mono">
+    <main className="w-full bg-black text-white overflow-x-hidden font-mono selection:bg-orange-500/30">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative min-h-[250px] md:min-h-[500px] w-full flex flex-col items-center justify-center overflow-hidden px-6 py-10 md:py-32 mt-8 md:mt-16 text-center">
+      <section className="relative min-h-[250px] md:min-h-[500px] w-full flex flex-col items-center justify-center overflow-hidden px-6 py-10 md:py-32 mt-8 md:mt-16 text-center [transform:translateZ(0)]">
         {/* Background Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:30px_30px] md:bg-[size:60px_60px] pointer-events-none" />
         
         {/* Glow Element */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-orange-500/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none opacity-40" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-orange-500/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none opacity-40 will-change-[filter]" />
 
         {/* Side Icons */}
-        <div className="absolute left-10 xl:left-20 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.05]">
+        <div className="absolute left-10 xl:left-20 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.05] pointer-events-none">
           <Trophy size={180} className="text-white" />
         </div>
-        <div className="absolute right-10 xl:right-20 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.05]">
+        <div className="absolute right-10 xl:right-20 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.05] pointer-events-none">
           <Shield size={180} className="text-orange-500" />
         </div>
 
@@ -56,10 +63,9 @@ export default function ContestsPage() {
           <h1 className="text-4xl md:text-8xl font-black tracking-tighter text-white uppercase leading-none">
             Hall of <span className="text-orange-500">Fame</span>
           </h1>
-
-             <p className="text-xs md:text-xl text-orange-400 font-bold tracking-[0.2em] uppercase">
-              Our journey through national and international challenges
-            </p>
+          <p className="text-xs md:text-xl text-orange-400 font-bold tracking-[0.2em] uppercase">
+            Our journey through national and international challenges
+          </p>
         </div>
       </section>
 
@@ -72,7 +78,7 @@ export default function ContestsPage() {
           </div>
 
           <div className="space-y-4">
-            {contests.map((contest, idx) => {
+            {CONTESTS_LIST.map((contest, idx) => {
               const IconComponent = contest.icon;
               return (
                 <a
@@ -80,7 +86,7 @@ export default function ContestsPage() {
                   href={contest.ctftime}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block bg-neutral-900/20 border border-neutral-800/50 rounded-xl md:rounded-2xl p-5 md:p-7 hover:border-orange-500/40 hover:bg-orange-500/[0.03] transition-all duration-300"
+                  className="group block bg-neutral-900/20 border border-neutral-800/50 rounded-xl md:rounded-2xl p-5 md:p-7 hover:border-orange-500/40 hover:bg-orange-500/[0.03] transition-all duration-300 [transform:translateZ(0)]"
                 >
                   <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                     
@@ -143,17 +149,12 @@ export default function ContestsPage() {
 
           {/* Overall Stats Grid */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-16 md:mt-24">
-            {[
-              { label: 'Competitions', value: '1', icon: <Globe size={120} /> },
-              { label: 'Challenges Solved', value: '18', icon: <Target size={120} /> },
-              { label: 'Flag Captures', value: '31', icon: <Zap size={120} /> },
-              { label: 'Data Points', value: '12.7K', icon: <Activity size={120} /> },
-            ].map((stat, i) => (
+            {OVERALL_STATS.map((stat, i) => (
               <div
                 key={i}
-                className="relative overflow-hidden bg-neutral-900/30 border border-neutral-800 rounded-xl md:rounded-2xl p-6 md:p-10 text-center space-y-3 transition-all duration-500 group hover:border-orange-500/50 hover:bg-orange-500/[0.02]"
+                className="relative overflow-hidden bg-neutral-900/30 border border-neutral-800 rounded-xl md:rounded-2xl p-6 md:p-10 text-center space-y-3 transition-all duration-500 group hover:border-orange-500/50 hover:bg-orange-500/[0.02] [transform:translateZ(0)]"
               >
-                <div className="absolute -top-4 -right-4 opacity-[0.02] group-hover:opacity-[0.08] group-hover:text-orange-500 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+                <div className="absolute -top-4 -right-4 opacity-[0.02] group-hover:opacity-[0.08] group-hover:text-orange-500 group-hover:-rotate-12 transition-all duration-700 pointer-events-none will-change-transform">
                   {stat.icon}
                 </div>
                 

@@ -1,5 +1,6 @@
 'use client';
 
+import { memo } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { 
@@ -7,14 +8,9 @@ import {
   ShieldCheck, 
   Github, 
   Globe, 
-  Lock, 
-  Zap,
-  Eye,
-  BookOpen,
+  Eye, 
   Calendar,
   Circle,
-  Terminal,
-  Search,
   Hash,
   Cpu,
   Link as LinkIcon,
@@ -23,108 +19,77 @@ import {
   Cpu as Hardware,
   FileSearch,
   Bot,
-  Binary,
-  ShieldAlert
+  Binary
 } from 'lucide-react';
 
-export default function TeamPage() {
-  const members = [
-    {
-      id: 1,
-      nickname: 'K4lameety',
-      role: 'that simple',
-      status: 'active',
-      specializations: [
-        'Web',
-        'Forensics'
-      ],
-      joinedYear: '2025',
-      avatarUrl: '/avatar/K4lameety.png',
-      bgIcon: <FileSearch size={120} />,
-      socials: [
-        { icon: <Github size={16} />, url: 'https://github.com/K4lameety' },
-        { icon: <Globe size={16} />, url: 'https://k4lameety.github.io' }
-      ]
-    },
-    {
-      id: 2,
-      nickname: 'Kaiser114',
-      role: 'money oriented',
-      status: 'active',
-      specializations: ['Crypto', 'Osint'],
-      joinedYear: '2025',
-      avatarUrl: '/avatar/Kaiser114.png',
-      bgIcon: <Eye size={120} />,
-      socials: []
-    },
-  ];
+const MEMBERS = [
+  {
+    id: 1,
+    nickname: 'K4lameety',
+    role: 'that simple',
+    status: 'active',
+    specializations: ['Web', 'Forensics'],
+    joinedYear: '2025',
+    avatarUrl: '/avatar/K4lameety.png',
+    bgIcon: <FileSearch size={120} />,
+    socials: [
+      { icon: <Github size={16} />, url: 'https://github.com/K4lameety' },
+      { icon: <Globe size={16} />, url: 'https://k4lameety.github.io' }
+    ]
+  },
+  {
+    id: 2,
+    nickname: 'Kaiser114',
+    role: 'money oriented',
+    status: 'active',
+    specializations: ['Crypto', 'Osint'],
+    joinedYear: '2025',
+    avatarUrl: '/avatar/Kaiser114.png',
+    bgIcon: <Eye size={120} />,
+    socials: []
+  },
+];
 
-  const getBadgeSpecs = (spec: string) => {
-  const specs: Record<string, { style: string; icon: React.ReactNode }> = {
-    'Web': { 
-      style: 'bg-blue-600 border-blue-400 text-white', 
-      icon: <Globe size={14} /> 
-    },
-    'Osint': { 
-      style: 'bg-orange-600 border-orange-400 text-white', 
-      icon: <Eye size={14} /> 
-    },
-    'Pwn': { 
-      style: 'bg-red-600 border-red-400 text-white', 
-      icon: <Binary size={14} /> 
-    },
-    'Crypto': { 
-      style: 'bg-purple-600 border-purple-400 text-white', 
-      icon: <Hash size={14} /> 
-    },
-    'Rev': { 
-      style: 'bg-emerald-600 border-emerald-400 text-white', 
-      icon: <Cpu size={14} /> 
-    },
-    'Forensics': { 
-      style: 'bg-cyan-600 border-cyan-400 text-white', 
-      icon: <FileSearch size={14} /> 
-    },
-    'Blockchain': { 
-      style: 'bg-amber-500 border-amber-300 text-black',
-      icon: <LinkIcon size={14} /> 
-    },
-    'Mobile': { 
-      style: 'bg-pink-600 border-pink-400 text-white', 
-      icon: <Smartphone size={14} /> 
-    },
-    'Cloud': { 
-      style: 'bg-sky-500 border-sky-300 text-white', 
-      icon: <Cloud size={14} /> 
-    },
-    'Hardware': { 
-      style: 'bg-slate-700 border-slate-500 text-white', 
-      icon: <Hardware size={14} /> 
-    },
-    'AI': { 
-      style: 'bg-indigo-600 border-indigo-400 text-white', 
-      icon: <Bot size={14} /> 
-    },
-    'Misc': { 
-      style: 'bg-neutral-600 border-neutral-400 text-white', 
-      icon: <Circle size={10} fill="currentColor" /> 
-    },
-  };
-  return specs[spec] || specs['Misc'];
+const SPECS_CONFIG: Record<string, { style: string; icon: React.ReactNode }> = {
+  'Web': { style: 'bg-blue-600 border-blue-400 text-white', icon: <Globe size={14} /> },
+  'Osint': { style: 'bg-orange-600 border-orange-400 text-white', icon: <Eye size={14} /> },
+  'Pwn': { style: 'bg-red-600 border-red-400 text-white', icon: <Binary size={14} /> },
+  'Crypto': { style: 'bg-purple-600 border-purple-400 text-white', icon: <Hash size={14} /> },
+  'Rev': { style: 'bg-emerald-600 border-emerald-400 text-white', icon: <Cpu size={14} /> },
+  'Forensics': { style: 'bg-cyan-600 border-cyan-400 text-white', icon: <FileSearch size={14} /> },
+  'Blockchain': { style: 'bg-amber-500 border-amber-300 text-black', icon: <LinkIcon size={14} /> },
+  'Mobile': { style: 'bg-pink-600 border-pink-400 text-white', icon: <Smartphone size={14} /> },
+  'Cloud': { style: 'bg-sky-500 border-sky-300 text-white', icon: <Cloud size={14} /> },
+  'Hardware': { style: 'bg-slate-700 border-slate-500 text-white', icon: <Hardware size={14} /> },
+  'AI': { style: 'bg-indigo-600 border-indigo-400 text-white', icon: <Bot size={14} /> },
+  'Misc': { style: 'bg-neutral-600 border-neutral-400 text-white', icon: <Circle size={10} fill="currentColor" /> },
 };
 
+const SpecializationBadge = memo(({ spec }: { spec: string }) => {
+  const config = SPECS_CONFIG[spec] || SPECS_CONFIG['Misc'];
+  return (
+    <div className={`flex items-center gap-2 px-4 py-1.5 rounded-lg border-b-2 shadow-lg text-[11px] md:text-[12px] uppercase font-black transition-all hover:-translate-y-1 active:scale-95 ${config.style}`}>
+      <span className="drop-shadow-md">{config.icon}</span>
+      <span className="drop-shadow-md">{spec}</span>
+    </div>
+  );
+});
+SpecializationBadge.displayName = 'SpecializationBadge';
+
+export default function TeamPage() {
   return (
     <main className="w-full bg-black text-white overflow-x-hidden font-mono selection:bg-orange-500/30">
       <Navigation />
       
-      <section className="relative min-h-[250px] md:min-h-[500px] w-full flex flex-col items-center justify-center overflow-hidden px-6 py-10 md:py-20 mt-8 md:mt-16 text-center">
+      {/* Header Section */}
+      <section className="relative min-h-[250px] md:min-h-[500px] w-full flex flex-col items-center justify-center overflow-hidden px-6 py-10 md:py-20 mt-8 md:mt-16 text-center [transform:translateZ(0)]">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:30px_30px] md:bg-[size:60px_60px] pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-orange-500/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none opacity-40" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-orange-500/10 rounded-full blur-[80px] md:blur-[120px] pointer-events-none opacity-40 will-change-[filter]" />
 
-        <div className="absolute left-10 xl:left-20 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.05]">
+        <div className="absolute left-10 xl:left-20 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.05] pointer-events-none">
           <Users size={180} />
         </div>
-        <div className="absolute right-10 xl:right-20 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.05]">
+        <div className="absolute right-10 xl:right-20 top-1/2 -translate-y-1/2 hidden lg:block opacity-[0.05] pointer-events-none">
           <ShieldCheck size={180} className="text-orange-500" />
         </div>
         
@@ -136,7 +101,8 @@ export default function TeamPage() {
         </div>
       </section>
 
-      <section className="relative w-full py-16 px-6 md:px-12 bg-black border-t border-neutral-900">
+      {/* Members Section */}
+      <section className="relative w-full py-16 px-6 md:px-12 bg-black border-t border-neutral-900 [transform:translateZ(0)]">
         <div className="max-w-7xl mx-auto relative z-10">
           
           <div className="mb-12 md:mb-20 space-y-3 md:space-y-4 text-left">
@@ -145,12 +111,12 @@ export default function TeamPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {members.map((member) => (
+            {MEMBERS.map((member) => (
               <div
                 key={member.id}
-                className="group relative bg-neutral-900/30 border border-neutral-800 rounded-2xl p-6 md:p-8 transition-all duration-500 hover:border-orange-500/40 hover:bg-orange-500/[0.02] flex flex-col justify-between overflow-hidden"
+                className="group relative bg-neutral-900/30 border border-neutral-800 rounded-2xl p-6 md:p-8 transition-all duration-500 hover:border-orange-500/40 hover:bg-orange-500/[0.02] flex flex-col justify-between overflow-hidden [transform:translateZ(0)]"
               >
-                <div className="absolute -bottom-4 -right-4 opacity-[0.03] group-hover:opacity-[0.1] group-hover:text-orange-500 transition-all duration-700 pointer-events-none">
+                <div className="absolute -bottom-4 -right-4 opacity-[0.03] group-hover:opacity-[0.1] group-hover:text-orange-500 transition-all duration-700 pointer-events-none will-change-transform">
                   {member.bgIcon}
                 </div>
 
@@ -161,6 +127,7 @@ export default function TeamPage() {
                         <img 
                           src={member.avatarUrl} 
                           alt={member.nickname}
+                          loading="lazy"
                           className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
                         />
                       </div>
@@ -168,7 +135,7 @@ export default function TeamPage() {
 
                     <div className="flex gap-2">
                       {member.socials.map((social, sIdx) => (
-                        <a key={sIdx} href={social.url} className="p-2.5 bg-neutral-800 border border-neutral-700 rounded-xl text-neutral-400 hover:text-orange-500 hover:border-orange-500/50 transition-all">
+                        <a key={sIdx} href={social.url} target="_blank" rel="noopener noreferrer" className="p-2.5 bg-neutral-800 border border-neutral-700 rounded-xl text-neutral-400 hover:text-orange-500 hover:border-orange-500/50 transition-all active:scale-90">
                           {social.icon}
                         </a>
                       ))}
@@ -205,18 +172,9 @@ export default function TeamPage() {
                     </p>
 
                     <div className="flex flex-wrap gap-2.5 pt-2">
-                      {member.specializations.map((spec, sIdx) => {
-                        const { style, icon } = getBadgeSpecs(spec);
-                        return (
-                          <div 
-                            key={sIdx} 
-                            className={`flex items-center gap-2 px-4 py-1.5 rounded-lg border-b-2 shadow-lg text-[11px] md:text-[12px] uppercase font-black transition-all hover:-translate-y-1 active:scale-95 ${style}`}
-                          >
-                            <span className="drop-shadow-md">{icon}</span>
-                            <span className="drop-shadow-md">{spec}</span>
-                          </div>
-                        );
-                      })}
+                      {member.specializations.map((spec) => (
+                        <SpecializationBadge key={spec} spec={spec} />
+                      ))}
                     </div>
                   </div>
                 </div>
