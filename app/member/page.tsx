@@ -17,7 +17,14 @@ import {
   Search,
   Hash,
   Cpu,
-  Link as LinkIcon
+  Link as LinkIcon,
+  Smartphone,
+  Cloud,
+  Cpu as Hardware,
+  FileSearch,
+  Bot,
+  Binary,
+  ShieldAlert
 } from 'lucide-react';
 
 export default function TeamPage() {
@@ -27,10 +34,13 @@ export default function TeamPage() {
       nickname: 'K4lameety',
       role: 'that simple',
       status: 'active',
-      specializations: ['Web', 'Forensics'],
+      specializations: [
+        'Web',
+        'Forensics'
+      ],
       joinedYear: '2025',
       avatarUrl: '/avatar/K4lameety.png',
-      bgIcon: <Search size={120} />,
+      bgIcon: <FileSearch size={120} />,
       socials: [
         { icon: <Github size={16} />, url: 'https://github.com/K4lameety' },
         { icon: <Globe size={16} />, url: 'https://k4lameety.github.io' }
@@ -50,42 +60,58 @@ export default function TeamPage() {
   ];
 
   const getBadgeSpecs = (spec: string) => {
-    const specs: Record<string, { style: string; icon: React.ReactNode }> = {
-      'Web': { 
-        style: 'bg-blue-600 border-blue-400 text-white', 
-        icon: <Globe size={14} /> 
-      },
-      'Osint': { 
-        style: 'bg-orange-600 border-orange-400 text-white', 
-        icon: <Eye size={14} /> 
-      },
-      'Pwn': { 
-        style: 'bg-red-600 border-red-400 text-white', 
-        icon: <Terminal size={14} /> 
-      },
-      'Crypto': { 
-        style: 'bg-purple-600 border-purple-400 text-white', 
-        icon: <Hash size={14} /> 
-      },
-      'Rev': { 
-        style: 'bg-emerald-600 border-emerald-400 text-white', 
-        icon: <Cpu size={14} /> 
-      },
-      'Forensics': { 
-        style: 'bg-cyan-600 border-cyan-400 text-white', 
-        icon: <Search size={14} /> 
-      },
-      'Blockchain': { 
-        style: 'bg-amber-500 border-amber-300 text-black',
-        icon: <LinkIcon size={14} /> 
-      },
-      'Misc': { 
-        style: 'bg-neutral-600 border-neutral-400 text-white', 
-        icon: <Circle size={10} fill="currentColor" /> 
-      },
-    };
-    return specs[spec] || specs['Misc'];
+  const specs: Record<string, { style: string; icon: React.ReactNode }> = {
+    'Web': { 
+      style: 'bg-blue-600 border-blue-400 text-white', 
+      icon: <Globe size={14} /> 
+    },
+    'Osint': { 
+      style: 'bg-orange-600 border-orange-400 text-white', 
+      icon: <Eye size={14} /> 
+    },
+    'Pwn': { 
+      style: 'bg-red-600 border-red-400 text-white', 
+      icon: <Binary size={14} /> 
+    },
+    'Crypto': { 
+      style: 'bg-purple-600 border-purple-400 text-white', 
+      icon: <Hash size={14} /> 
+    },
+    'Rev': { 
+      style: 'bg-emerald-600 border-emerald-400 text-white', 
+      icon: <Cpu size={14} /> 
+    },
+    'Forensics': { 
+      style: 'bg-cyan-600 border-cyan-400 text-white', 
+      icon: <FileSearch size={14} /> 
+    },
+    'Blockchain': { 
+      style: 'bg-amber-500 border-amber-300 text-black',
+      icon: <LinkIcon size={14} /> 
+    },
+    'Mobile': { 
+      style: 'bg-pink-600 border-pink-400 text-white', 
+      icon: <Smartphone size={14} /> 
+    },
+    'Cloud': { 
+      style: 'bg-sky-500 border-sky-300 text-white', 
+      icon: <Cloud size={14} /> 
+    },
+    'Hardware': { 
+      style: 'bg-slate-700 border-slate-500 text-white', 
+      icon: <Hardware size={14} /> 
+    },
+    'AI': { 
+      style: 'bg-indigo-600 border-indigo-400 text-white', 
+      icon: <Bot size={14} /> 
+    },
+    'Misc': { 
+      style: 'bg-neutral-600 border-neutral-400 text-white', 
+      icon: <Circle size={10} fill="currentColor" /> 
+    },
   };
+  return specs[spec] || specs['Misc'];
+};
 
   return (
     <main className="w-full bg-black text-white overflow-x-hidden font-mono selection:bg-orange-500/30">
