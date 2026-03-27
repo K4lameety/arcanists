@@ -1,11 +1,10 @@
 'use client';
 
-import { useEffect, useState, memo } from 'react';
+import { useEffect, useState, memo, cloneElement, ReactElement } from 'react';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { ArrowRight, Trophy, Users, Target, Clock, Shield } from 'lucide-react';
 
-// Data Statis (Teks Tidak Berubah)
 const STATS = [
   { label: 'Competitions', value: '1', icon: <Trophy size={48} /> },
   { label: 'Members', value: '18', icon: <Users size={48} /> },
@@ -20,7 +19,6 @@ const CORE_VALUES = [
   { n: "04", t: "Integrity", d: "Upholding the highest ethical standards and professional conduct in every operation and research." }
 ];
 
-// Komponen Typing yang super ringan
 const TypingLogo = memo(({ text }: { text: string }) => {
   const [displayText, setDisplayText] = useState('');
   useEffect(() => {
@@ -169,12 +167,23 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Stats Grid */}
+            {/* Stats Grid*/}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8">
               {STATS.map((stat, idx) => (
-                <div key={idx} className="bg-neutral-900/30 border border-neutral-800 rounded-lg p-4 md:p-8 text-center hover:border-orange-500/50 transition-all duration-300">
-                  <div className="text-2xl md:text-5xl font-mono font-bold text-white mb-1">{stat.value}</div>
-                  <div className="text-[8px] md:text-xs text-neutral-500 uppercase tracking-widest">{stat.label}</div>
+                <div key={idx} className="group relative bg-neutral-900/30 border border-neutral-800 rounded-lg p-4 md:p-8 text-center hover:border-orange-500/50 transition-all duration-300 overflow-hidden">
+                  
+                  <div className="absolute -bottom-4 -right-4 opacity-[0.03] group-hover:opacity-[0.1] group-hover:text-orange-500 transition-all duration-700 pointer-events-none group-hover:rotate-12 group-hover:scale-110">
+                    {cloneElement(stat.icon as ReactElement, { size: 100 })}
+                  </div>
+
+                  <div className="relative z-10">
+                    <div className="text-2xl md:text-5xl font-mono font-bold text-white mb-1 group-hover:text-orange-500 transition-colors">
+                      {stat.value}
+                    </div>
+                    <div className="text-[8px] md:text-xs text-neutral-500 uppercase tracking-widest">
+                      {stat.label}
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
