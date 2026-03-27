@@ -19,7 +19,10 @@ import {
   Cpu as Hardware,
   FileSearch,
   Bot,
-  Binary
+  Binary,
+  Linkedin,
+  Twitter,
+  X,
 } from 'lucide-react';
 
 
@@ -50,12 +53,16 @@ const MEMBERS = [
   {
     id: 3,
     nickname: 'leosycthe',
-    role: '',
+    role: 'Waiting for ret2isekai payload',
     status: 'active',
-    specializations: [],
+    specializations: ['Reverse', 'Pwn'],
     joinedYear: '2023',
     avatarUrl: '/avatar/Leosycthe.png',
-    socials: []
+    socials: [
+      { icon: <Github size={16} />, url: 'https://github.com/leosycthe' },
+      { icon: <Globe size={16} />, url: 'https://leosycthe.github.io' },
+      { icon: <Linkedin size={16} />, url: 'https://www.linkedin.com/in/muhammad-rayhan-widayat' }
+    ]
   },
 ];
 
@@ -65,7 +72,7 @@ const SPECS_CONFIG: Record<string, { style: string; icon: React.ReactNode }> = {
   'Osint': { style: 'bg-orange-600 border-orange-400 text-white', icon: <Eye size={14} /> },
   'Pwn': { style: 'bg-red-600 border-red-400 text-white', icon: <Binary size={14} /> },
   'Crypto': { style: 'bg-purple-600 border-purple-400 text-white', icon: <Hash size={14} /> },
-  'Rev': { style: 'bg-emerald-600 border-emerald-400 text-white', icon: <Cpu size={14} /> },
+  'Reverse': { style: 'bg-emerald-600 border-emerald-400 text-white', icon: <Cpu size={14} /> },
   'Forensics': { style: 'bg-cyan-600 border-cyan-400 text-white', icon: <FileSearch size={14} /> },
   'Blockchain': { style: 'bg-amber-500 border-amber-300 text-black', icon: <LinkIcon size={14} /> },
   'Mobile': { style: 'bg-pink-600 border-pink-400 text-white', icon: <Smartphone size={14} /> },
