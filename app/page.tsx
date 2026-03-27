@@ -75,7 +75,7 @@ export default function Home() {
               </p>
               <div className="text-xs md:text-lg text-neutral-400 max-w-2xl mx-auto leading-relaxed font-light px-4 md:px-0">
                 <p>
-                  A specialized division under <span className="text-white font-medium">Forticode Club</span>, created by <span className="text-white font-medium">UMY</span> students who share a deep interest and concern for cybersecurity.
+                  Operating under the auspices of <span className="text-white font-medium">Forticode Club</span>, this community was founded by students of Universitas Muhammadiyah Yogyakarta, born out of a profound dedication to digital system integrity. We focus on developing technical expertise and security research to meet the challenges of an ever-evolving technological landscape.
                 </p>
               </div>
             </div>
@@ -117,18 +117,18 @@ export default function Home() {
               <div className="space-y-6 md:space-y-8">
                 <div className="space-y-4 md:space-y-6">
                   <p className="text-sm md:text-lg text-neutral-400 leading-relaxed text-center md:text-left">
-                    <span className="text-white font-medium">ARCANISTS</span> adalah divisi keamanan siber di bawah <span className="text-white">FORTICODE</span>, yang dibentuk oleh mahasiswa Universitas Muhammadiyah Yogyakarta yang memiliki minat mendalam pada pertahanan digital.
+                    At <span className="text-white font-medium">Arcanists</span>, we believe that cybersecurity is more than just lines of code—it is a mindset. As a collaborative hub, we are dedicated to bridging the gap between academic theory and the practical, real-world security challenges faced in the industry today.
                   </p>
                   <p className="text-sm md:text-lg text-neutral-400 leading-relaxed text-center md:text-left">
-                    Kami berspesialisasi dalam berbagai domain cybersecurity termasuk <span className="text-orange-400 font-medium">Web Exploitation</span>, <span className="text-orange-400 font-medium">Binary Exploitation</span>, <span className="text-orange-400 font-medium">Cryptography</span>, dan <span className="text-orange-400 font-medium">Digital Forensics</span>.
+                    Through continuous research, Capture The Flag (CTF) simulations, and active knowledge sharing, we foster an ecosystem where technical sharpness meets ethical integrity. Our mission is to empower our members with the skills necessary to combat increasingly complex digital threats in an ever-evolving technological landscape.
                   </p>
                 </div>
 
                 <div className="space-y-4 pt-6 border-t border-neutral-800">
                   {[
-                    "Kompetisi CTF regular di tingkat internasional & nasional.",
-                    "Riset mendalam mengenai teknik eksploitasi dan pertahanan terbaru.",
-                    "Mentoring intensif bagi anggota baru untuk mengasah skill teknis."
+                    "Regular CTF competitions at both national and international levels.",
+                    "In-depth research on the latest exploitation techniques and defensive strategies.",
+                    "Intensive mentoring for new members to sharpen their technical skills."
                   ].map((text, i) => (
                     <div key={i} className="flex items-start gap-3 md:gap-4 group">
                       <div className="mt-1 flex-shrink-0">
@@ -152,10 +152,26 @@ export default function Home() {
                 </h3>
                 <ul className="space-y-5 md:space-y-6 terminal-text">
                   {[
-                    { n: "01", t: "Expertise", d: "Terus belajar dan mengasah kemampuan teknis tanpa batas." },
-                    { n: "02", t: "Collaboration", d: "Bekerja sama dalam tim untuk menaklukkan setiap tantangan." },
-                    { n: "03", t: "Innovation", d: "Menemukan solusi kreatif dalam menghadapi celah keamanan." },
-                    { n: "04", t: "Integrity", d: "Menjunjung tinggi etika profesi dalam setiap operasi." }
+                    { 
+                      "n": "01", 
+                      "t": "Expertise", 
+                      "d": "Continuously evolving and sharpening technical mastery without limits to master the digital landscape." 
+                    },
+                    { 
+                      "n": "02", 
+                      "t": "Collaboration", 
+                      "d": "Uniting diverse talents within a strategic hub to conquer every complex security challenge." 
+                    },
+                    { 
+                      "n": "03", 
+                      "t": "Innovation", 
+                      "d": "Developing creative solutions and proactive approaches to identify and mitigate modern vulnerabilities." 
+                    },
+                    { 
+                      "n": "04", 
+                      "t": "Integrity", 
+                      "d": "Upholding the highest ethical standards and professional conduct in every operation and research." 
+                    }
                   ].map((item, i) => (
                     <li key={i} className="space-y-1">
                       <div className="text-orange-500 font-bold text-[10px] md:text-xs uppercase tracking-widest">{item.n}. {item.t}</div>

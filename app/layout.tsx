@@ -7,7 +7,7 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: 'Arcanists Team',
+  title: 'Arcanists | Cybersecurity and Networking Community',
   icons: {
     icon: '/icon.png',
   },
