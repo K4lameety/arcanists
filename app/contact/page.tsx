@@ -195,6 +195,12 @@ export default function ContactPage() {
         Registration is opened in batches for new students at UMY.
       </p>
 
+      <div className="rounded-lg border border-orange-500/30 bg-orange-500/5 p-3 mb-4">
+        <p className="text-xs md:text-sm text-neutral-300">
+          <span className="text-orange-500 font-bold">New students (freshmen):</span> no requirements needed. Register directly by contacting Telegram: <span className="text-orange-500 font-bold">@NaufalArifAthallah</span>
+        </p>
+      </div>
+
       <div className="text-neutral-400 text-sm space-y-3">
         <p>If you miss the batch, you must complete:</p>
 

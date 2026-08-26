@@ -164,13 +164,14 @@ type BurstHandle = { stop: () => void };
 
 export function createBurst(
   canvas: HTMLCanvasElement,
-  opts: { count?: number; duration?: number } = {}
+  opts: { count?: number; duration?: number; startRadius?: number; center?: { x: number; y: number } } = {}
 ): BurstHandle {
   const ctx = canvas.getContext('2d', { alpha: true });
   if (!ctx) return { stop: () => {} };
 
   const count = opts.count ?? 120;
   const duration = opts.duration ?? 1600;
+  const startRadius = opts.startRadius ?? 0;
   const sprites = buildSprites();
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
@@ -181,15 +182,17 @@ export function createBurst(
   canvas.height = Math.floor(h * dpr);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-  const cx = w / 2;
-  const cy = h / 2;
+  const cx = opts.center?.x ?? w / 2;
+  const cy = opts.center?.y ?? h / 2;
 
   const parts = Array.from({ length: count }, () => {
     const angle = Math.random() * Math.PI * 2;
     const speed = rand(120, 420);
     const p = makeEmber();
-    p.x = cx;
-    p.y = cy;
+    // Spawn on a ring at startRadius, not the center point, so the burst
+    // reads as radiating from just outside the logo instead of through it.
+    p.x = cx + Math.cos(angle) * startRadius;
+    p.y = cy + Math.sin(angle) * startRadius;
     p.vx = Math.cos(angle) * speed;
     p.vy = Math.sin(angle) * speed;
     p.r = 0.7 + Math.random() * 1.8;
